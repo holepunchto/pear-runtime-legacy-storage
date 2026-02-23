@@ -12,20 +12,23 @@ module.exports = async (key) => {
       ? path.join(os.homedir(), '.config')
       : path.join(os.homedir(), 'AppData', 'Roaming')
 
+  let store = null
   let model = null
 
   try {
-    const store = new Corestore(path.join(platformDir, 'pear', 'corestores', 'platform'), {
+    store = new Corestore(path.join(platformDir, 'pear', 'corestores', 'platform'), {
       readOnly: true
     })
+    await store.ready()
     const rocks = HyperDB.rocks(store.storage.rocks.session(), spec)
     model = new Model(rocks)
     await model.db.ready()
-    return model.getAppStorage(key)
+    return await model.getAppStorage(key)
   } catch (err) {
     console.log(err)
     return null
   } finally {
-    if (model) await model.close()
+    await model?.close()
+    await store?.close()
   }
 }
