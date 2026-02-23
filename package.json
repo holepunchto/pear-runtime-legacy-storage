@@ -1,0 +1,31 @@
+{
+  "name": "pear-runtime-legacy-storage",
+  "version": "1.0.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "author": "Holepunch Inc",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "prettier --check . && lunte",
+    "format": "prettier --write ."
+  },
+  "imports": {
+    "os": {
+      "bare": "bare-os",
+      "default": "os"
+    },
+    "path": {
+      "bare": "bare-path",
+      "default": "path"
+    }
+  },
+  "devDependencies": {
+    "lunte": "^1.6.0",
+    "prettier": "^3.8.1",
+    "prettier-config-holepunch": "^2.0.0"
+  }
+}
