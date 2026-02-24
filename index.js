@@ -7,16 +7,16 @@ const os = require('os')
 
 module.exports = async (key) => {
   const platformDir = isMac
-    ? path.join(os.homedir(), 'Library', 'Application Support')
+    ? path.join(os.homedir(), 'Library', 'Application Support', 'pear')
     : isLinux
-      ? path.join(os.homedir(), '.config')
-      : path.join(os.homedir(), 'AppData', 'Roaming')
+      ? path.join(os.homedir(), '.config', 'pear')
+      : path.join(os.homedir(), 'AppData', 'Roaming', 'pear')
 
   let store = null
   let model = null
 
   try {
-    store = new Corestore(path.join(platformDir, 'pear', 'corestores', 'platform'), {
+    store = new Corestore(path.join(platformDir, 'corestores', 'platform'), {
       readOnly: true
     })
     await store.ready()
