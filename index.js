@@ -6,10 +6,13 @@ const path = require('path')
 const os = require('os')
 
 module.exports = async (key) => {
+  const isSnap = !!process.env.SNAP_USER_COMMON
   const platformDir = isMac
     ? path.join(os.homedir(), 'Library', 'Application Support', 'pear')
     : isLinux
-      ? path.join(os.homedir(), '.config', 'pear')
+      ? isSnap
+        ? path.join(process.env.SNAP_USER_COMMON, 'pear')
+        : path.join(os.homedir(), '.config', 'pear')
       : path.join(os.homedir(), 'AppData', 'Roaming', 'pear')
 
   let store = null
