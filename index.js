@@ -4,6 +4,7 @@ const Corestore = require('corestore')
 const { isMac, isLinux } = require('which-runtime')
 const path = require('path')
 const os = require('os')
+const fs = require('fs/promises')
 
 module.exports = async (key) => {
   const isSnap = !!process.env.SNAP_USER_COMMON
@@ -15,11 +16,19 @@ module.exports = async (key) => {
         : path.join(os.homedir(), '.config', 'pear')
       : path.join(os.homedir(), 'AppData', 'Roaming', 'pear')
 
+  const corestorePath = path.join(platformDir, 'corestores', 'platform')
+
+  try {
+    await fs.access(corestorePath)
+  } catch {
+    return null
+  }
+
   let store = null
   let model = null
 
   try {
-    store = new Corestore(path.join(platformDir, 'corestores', 'platform'), {
+    store = new Corestore(corestorePath, {
       readOnly: true
     })
     await store.ready()
