@@ -21,6 +21,10 @@
     "path": {
       "bare": "bare-path",
       "default": "path"
+    },
+    "fs": {
+      "bare": "bare-fs",
+      "default": "fs"
     }
   },
   "devDependencies": {
