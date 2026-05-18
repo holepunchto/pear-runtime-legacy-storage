@@ -1,7 +1,7 @@
 {
   "name": "pear-runtime-legacy-storage",
-  "version": "1.3.0",
-  "description": "",
+  "version": "1.3.1",
+  "description": "Read app storage from the Pear platform `hyperdb` (read-only).",
   "license": "Apache-2.0",
   "author": "Holepunch Inc",
   "main": "index.js",
@@ -39,5 +39,14 @@
     "hyperdb": "^6.6.3",
     "pear-hyperdb": "^1.0.0",
     "which-runtime": "^1.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/pear-runtime-legacy-storage.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/holepunchto/pear-runtime-legacy-storage/issues"
+  },
+  "homepage": "https://github.com/holepunchto/pear-runtime-legacy-storage#readme"
 }
