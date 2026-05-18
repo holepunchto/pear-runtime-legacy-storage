@@ -8,12 +8,13 @@ const fs = require('fs/promises')
 
 module.exports = async (key) => {
   const isSnap = !!process.env.SNAP_USER_COMMON
+  const linuxConfigHome = process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config')
   const platformDir = isMac
     ? path.join(os.homedir(), 'Library', 'Application Support', 'pear')
     : isLinux
       ? isSnap
         ? path.join(process.env.SNAP_USER_COMMON, 'pear')
-        : path.join(os.homedir(), '.config', 'pear')
+        : path.join(linuxConfigHome, 'pear')
       : path.join(os.homedir(), 'AppData', 'Roaming', 'pear')
 
   const corestorePath = path.join(platformDir, 'corestores', 'platform')
